@@ -1,20 +1,17 @@
 //Pro Guide goes down to as low as 6.7 inches off the ground when splayed out. Add a spotting scope version and the rifle saddle version
 class CfgPatches
 {
-    class UKSF_Rangefinder
+    class UKSF_Recon
     {
         author = "UKSF Surplus";
         requiredAddons[] =
         {
             "A3_Weapons_F",
-            "A3_Anims_F",
             "cba_common",
-            "cba_events",
             "ace_main",
             "ace_common",
             "ace_apl",
-            "ace_interaction",
-            "tsp_animate"
+            "ace_interaction"
         };
         requiredVersion = 0.1;
     };
@@ -30,8 +27,8 @@ class CfgWeapons
         scope = 2;
         displayName = "[ZXX] Vortex Summit Carbon II Tripod";
         author = "UKSF Surplus";
-        model = "\UKSF_Rangefinder\Tripod_Item.p3d";
-        picture = "\UKSF_Rangefinder\data\UI\tripod_arsenal_ca.paa";
+        model = "\UKSF_Recon\Tripod_Item.p3d";
+        picture = "\UKSF_Recon\data\UI\tripod_arsenal_ca.paa";
         class ItemInfo: CBA_MiscItem_ItemInfo
         {
             mass = 15;
@@ -42,8 +39,8 @@ class CfgWeapons
         author = "UKSF Surplus";
         scope = 2;
         displayName = "[ZXX] Leupold Mk4 Spotting Scope";
-        model = "\UKSF_Rangefinder\Mk4_Handheld.p3d";
-        picture = "\UKSF_Rangefinder\data\UI\spotting_scope_arsenal_ca.paa";
+        model = "\UKSF_Recon\Mk4_Handheld.p3d";
+        picture = "\UKSF_Recon\data\UI\spotting_scope_arsenal_ca.paa";
         weaponInfoType = "Mk4_Rangefinder";
         opticsPPEffects[] = {"OpticsCHAbera1","OpticsBlur2"};
         opticsZoomMax = "0.25/12";
@@ -61,10 +58,10 @@ class CfgWeapons
         };
         modelOptics[] =
         {
-            "\UKSF_Rangefinder\1240_mildot12.p3d",
-            "\UKSF_Rangefinder\1240_mildot20.p3d",
-            "\UKSF_Rangefinder\1240_mildot32.p3d",
-            "\UKSF_Rangefinder\1240_mildot40.p3d"
+            "\UKSF_Recon\1240_mildot12.p3d",
+            "\UKSF_Recon\1240_mildot20.p3d",
+            "\UKSF_Recon\1240_mildot32.p3d",
+            "\UKSF_Recon\1240_mildot40.p3d"
         };
         discreteInitIndex = 0;
         discreteDistance[] =
@@ -103,7 +100,7 @@ class CfgVehicles
         unitInfoType = "RscUnitInfoStaticNoWeapon";
         side = 1;
         faction = "BLU_F";
-        model = "\UKSF_Rangefinder\Mk4_Tripod.p3d";
+        model = "\UKSF_Recon\Mk4_Tripod.p3d";
         receiveRemoteTargets = false;
         reportRemoteTargets = false;
         reportOwnPosition = false;
@@ -112,7 +109,7 @@ class CfgVehicles
         accuracy = 3.5;
         cost = 4;
         memoryPointDriverOptics = "gunnerview";
-        driverOpticsModel = "\UKSF_Rangefinder\1240_mildot12.p3d";
+        driverOpticsModel = "\UKSF_Recon\1240_mildot12.p3d";
         driverIsCommander = true;
         ace_dragging_canDrag = 1;
         ace_dragging_canCarry = 1;
@@ -143,7 +140,7 @@ class CfgVehicles
                 dontCreateAI = true;
                 weapons[] = {"Laserdesignator_mounted"};
                 gunnerOpticsColor[] = {1,1,1,1};
-                gunnerOpticsModel = "\UKSF_Rangefinder\1240_mildot12.p3d";
+                gunnerOpticsModel = "\UKSF_Recon\1240_mildot12.p3d";
                 gunnerOpticsEffect[] = {"OpticsCHAbera1","OpticsBlur2"};
                 animationSourceBody = "MainTurret";
                 animationSourceGun = "MainGun";
@@ -165,7 +162,7 @@ class CfgVehicles
                         minFov = "0.25/12";
                         maxFov = "0.25/12";
                         initFov = "0.25/12";
-                        gunnerOpticsModel = "\UKSF_Rangefinder\1240_mildot12.p3d";
+                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot12.p3d";
                     };
                     class Zoom20: Zoom12
                     {
@@ -173,7 +170,7 @@ class CfgVehicles
                         minFov = "0.25/20";
                         maxFov = "0.25/20";
                         initFov = "0.25/20";
-                        gunnerOpticsModel = "\UKSF_Rangefinder\1240_mildot20.p3d";
+                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot20.p3d";
                     };
                     class Zoom32: Zoom12
                     {
@@ -181,7 +178,7 @@ class CfgVehicles
                         minFov = "0.25/32";
                         maxFov = "0.25/32";
                         initFov = "0.25/32";
-                        gunnerOpticsModel = "\UKSF_Rangefinder\1240_mildot32.p3d";
+                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot32.p3d";
                     };
                     class Zoom40: Zoom12
                     {
@@ -189,7 +186,7 @@ class CfgVehicles
                         minFov = "0.25/40";
                         maxFov = "0.25/40";
                         initFov = "0.25/40";
-                        gunnerOpticsModel = "\UKSF_Rangefinder\1240_mildot40.p3d";
+                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot40.p3d";
                     };
                 };
             };
@@ -202,7 +199,7 @@ class CfgVehicles
                 class spotting_scope_pickup_inv
                 {
                     displayName = "Pickup Spotting Scope";
-                    icon = "\UKSF_Rangefinder\data\UI\spotting_scope_ace.paa";
+                    icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
                     selection = "";
                     distance = 5;
                     condition = "(alive _target) && (isNull gunner _target) && (_player canAdd ['Tripod_Item',2]) && (binocular _player != '')";
@@ -212,7 +209,7 @@ class CfgVehicles
                 class spotting_scope_pickup_weap
                 {
                     displayName = "Pickup Spotting Scope";
-                    icon = "\UKSF_Rangefinder\data\UI\spotting_scope_ace.paa";
+                    icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
                     selection = "";
                     distance = 5;
                     condition = "(alive _target) && (isNull gunner _target) && (_player canAdd ['Tripod_Item',2]) && (binocular _player == '')";
@@ -232,7 +229,7 @@ class CfgVehicles
                 class spotting_scope_place_inv
                 {
                     displayName = "Deploy Spotting Scope";
-                    icon = "\UKSF_Rangefinder\data\UI\spotting_scope_ace.paa";
+                    icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
                     condition = "('Tripod_Item' in (items _player)) && ('Leupold_Spotting_Scope_Handheld' in (items _player)) && (binocular _player != 'Leupold_Spotting_Scope_Handheld')";
                     statement = "_spottingScopeObj = 'Leupold_Spotting_Scope'; _spottingScope = _spottingScopeObj createVehicle (position _player); _spottingScope setposASL (_player modelToWorldWorld [0,1,0.5]); _spottingScope setDir getDir _player; createVehicleCrew (_spottingScope); _player removeItem 'Tripod_Item'; _player removeItem 'Leupold_Spotting_Scope_Handheld';";
                     showDisabled = 0;
@@ -240,7 +237,7 @@ class CfgVehicles
                 class spotting_scope_place_weap
                 {
                     displayName = "Deploy Spotting Scope";
-                    icon = "\UKSF_Rangefinder\data\UI\spotting_scope_ace.paa";
+                    icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
                     condition = "('Tripod_Item' in (items _player)) && ('Leupold_Spotting_Scope_Handheld' in (items _player)) && (binocular _player == 'Leupold_Spotting_Scope_Handheld')";
                     statement = "_spottingScopeObj = 'Leupold_Spotting_Scope'; _spottingScope = _spottingScopeObj createVehicle (position _player); _spottingScope setposASL (_player modelToWorldWorld [0,1,0.5]); _spottingScope setDir getDir _player; createVehicleCrew (_spottingScope); _player removeItem 'Tripod_Item'; _player removeItem 'Leupold_Spotting_Scope_Handheld';";
                     showDisabled = 0;
