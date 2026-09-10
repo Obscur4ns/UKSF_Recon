@@ -269,6 +269,10 @@ class CfgVehicles
             {
                 body = "mainTurret";
                 gun = "mainGun";
+                turretAxis = "osaveze";
+                gunAxis = "osahlavne";
+                gunBeg = "usti hlavne";
+                gunEnd = "konec hlavne";
                 animationSourceBody = "mainTurret";
                 animationSourceGun = "mainGun";
                 memoryPointGunnerOptics = "gunnerview";
@@ -354,16 +358,8 @@ class CfgVehicles
                 icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
                 selection = "";
                 distance = 5;
-                condition =
-                    "(alive _target) && "
-                    "(isNull gunner _target) && "
-                    "(_player canAdd ['Tripod_Item',2]) && "
-                    "(binocular _player != '')";
-                statement =
-                    "_player addItem 'Tripod_Item'; "
-                    "_player addItem 'Leupold_Spotting_Scope_Handheld'; "
-                    "deleteVehicle _target;";
-
+                condition = "(alive _target) && " "(isNull gunner _target) && " "(_player canAdd ['Tripod_Item',2]) && " "(binocular _player != '')";
+                statement = "_player addItem 'Tripod_Item'; " "_player addItem 'Leupold_Spotting_Scope_Handheld'; " "deleteVehicle _target;";
                 showDisabled = 0;
             };
             class spotting_scope_pickup_weap
@@ -372,15 +368,8 @@ class CfgVehicles
                 icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
                 selection = "";
                 distance = 5;
-                condition =
-                    "(alive _target) && "
-                    "(isNull gunner _target) && "
-                    "(_player canAdd ['Tripod_Item',2]) && "
-                    "(binocular _player == '')";
-                statement =
-                    "_player addItem 'Tripod_Item'; "
-                    "_player addItem 'Leupold_Spotting_Scope_Handheld'; "
-                    "deleteVehicle _target;";
+                condition = "(alive _target) && " "(isNull gunner _target) && " "(_player canAdd ['Tripod_Item',2]) && " "(binocular _player == '')";
+                statement = "_player addItem 'Tripod_Item'; " "_player addItem 'Leupold_Spotting_Scope_Handheld'; " "deleteVehicle _target;";
                 showDisabled = 0;
             };
         };
