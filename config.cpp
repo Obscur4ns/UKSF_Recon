@@ -34,6 +34,19 @@ class CfgWeapons
             mass = 15;
         };
     };
+    class Leupold_ProGuide_Tripod_Item: CBA_MiscItem
+    {
+        scope = 2;
+        displayName = "[ZXX] Leupold Pro Guide CF-436 Tripod";
+        author = "UKSF Surplus";
+        model = "\UKSF_Recon\Tripod_Stowed.p3d";
+        picture = "\UKSF_Recon\data\UI\proguide_arsenal_ca.paa";
+
+        class ItemInfo: CBA_MiscItem_ItemInfo
+        {
+            mass = 15;
+        };
+    };
     class Leupold_Spotting_Scope_Handheld: Binocular
     {
         author = "UKSF Surplus";
@@ -275,6 +288,7 @@ class CfgVehicles
                 gunEnd = "konec hlavne";
                 animationSourceBody = "mainTurret";
                 animationSourceGun = "mainGun";
+                animationSourceElevation = "ObsElevation";
                 memoryPointGunnerOptics = "gunnerview";
                 memoryPointsGetInGunner = "pos gunner";
                 memoryPointsGetInGunnerDir = "pos gunner dir";
@@ -372,6 +386,42 @@ class CfgVehicles
                 statement = "_player addItem 'Tripod_Item'; " "_player addItem 'Leupold_Spotting_Scope_Handheld'; " "deleteVehicle _target;";
                 showDisabled = 0;
             };
+            class leupold_proguide_pickup_inv
+            {
+                displayName = "Pack Up Pro Guide and Mk4";
+                icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
+                selection = "";
+                distance = 5;
+                condition = "(alive _target) && (isNull gunner _target) && (_player canAdd ['Leupold_ProGuide_Tripod_Item',2]) && (binocular _player != '')";
+                statement = "_player addItem 'Leupold_ProGuide_Tripod_Item'; _player addItem 'Leupold_Spotting_Scope_Handheld'; deleteVehicle _target;";
+                showDisabled = 0;
+            };
+            class leupold_proguide_pickup_weap
+            {
+                displayName = "Pack Up Pro Guide and Mk4";
+                icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
+                selection = "";
+                distance = 5;
+                condition = "(alive _target) && (isNull gunner _target) && (_player canAdd ['Leupold_ProGuide_Tripod_Item',2]) && (binocular _player == '')";
+                statement = "_player addItem 'Leupold_ProGuide_Tripod_Item'; _player addWeapon 'Leupold_Spotting_Scope_Handheld'; deleteVehicle _target;";
+                showDisabled = 0;
+            };
+            class tripod_splay_wider
+            {
+                displayName = "Splay Legs Wider";
+                distance = 5;
+                condition = "(alive _target) && (isNull gunner _target) && ((_target animationSourcePhase 'tripod_splay') < 1)";
+                statement = "_phase = _target animationSourcePhase 'tripod_splay'; _target animateSource ['tripod_splay',((_phase + 0.05) min 1)];";
+                showDisabled = 0;
+            };
+            class tripod_splay_narrower
+            {
+                displayName = "Bring Legs In";
+                distance = 5;
+                condition = "(alive _target) && (isNull gunner _target) && ((_target animationSourcePhase 'tripod_splay') > 0)";
+                statement = "_phase = _target animationSourcePhase 'tripod_splay'; _target animateSource ['tripod_splay',((_phase - 0.05) max 0)];";
+                showDisabled = 0;
+            };
         };
     };
 };
@@ -396,6 +446,22 @@ class CfgVehicles
                     icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
                     condition = "('Tripod_Item' in (items _player)) && ('Leupold_Spotting_Scope_Handheld' in (items _player)) && (binocular _player == 'Leupold_Spotting_Scope_Handheld')";
                     statement = "_spottingScopeObj = 'Leupold_Spotting_Scope'; _spottingScope = _spottingScopeObj createVehicle (position _player); _spottingScope setposASL (_player modelToWorldWorld [0,1,0.5]); _spottingScope setDir getDir _player; createVehicleCrew (_spottingScope); _player removeItem 'Tripod_Item'; _player removeItem 'Leupold_Spotting_Scope_Handheld';";
+                    showDisabled = 0;
+                };
+                class leupold_proguide_place_inv
+                {
+                    displayName = "Deploy Pro Guide with Mk4 Spotting Scope";
+                    icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
+                    condition = "('Leupold_ProGuide_Tripod_Item' in (items _player)) && ('Leupold_Spotting_Scope_Handheld' in (items _player)) && (binocular _player != 'Leupold_Spotting_Scope_Handheld')";
+                    statement = "_spottingScope = 'Leupold_ProGuide_Spotting' createVehicle (position _player); _spottingScope setPosASL (_player modelToWorldWorld [0,1,0]); _spottingScope setDir (getDir _player); _player removeItem 'Leupold_ProGuide_Tripod_Item'; _player removeItem 'Leupold_Spotting_Scope_Handheld';";
+                    showDisabled = 0;
+                };
+                class leupold_proguide_place_weap
+                {
+                    displayName = "Deploy Pro Guide with Mk4 Spotting Scope";
+                    icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
+                    condition = "('Leupold_ProGuide_Tripod_Item' in (items _player)) && (binocular _player == 'Leupold_Spotting_Scope_Handheld')";
+                    statement = "_spottingScope = 'Leupold_ProGuide_Spotting' createVehicle (position _player); _spottingScope setPosASL (_player modelToWorldWorld [0,1,0]); _spottingScope setDir (getDir _player); _player removeItem 'Leupold_ProGuide_Tripod_Item'; _player removeWeapon 'Leupold_Spotting_Scope_Handheld';";
                     showDisabled = 0;
                 };
             };
