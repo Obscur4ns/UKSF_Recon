@@ -1,4 +1,3 @@
-//Pro Guide goes down to as low as 6.7 inches off the ground when splayed out. Add a spotting scope version and the rifle saddle version
 class CfgPatches
 {
     class UKSF_Recon
@@ -7,13 +6,30 @@ class CfgPatches
         requiredAddons[] =
         {
             "A3_Weapons_F",
+            "A3_Anims_F",
             "cba_common",
+            "cba_xeh",
+            "cba_keybinding",
             "ace_main",
             "ace_common",
             "ace_apl",
             "ace_interaction"
         };
         requiredVersion = 0.1;
+    };
+};
+class Extended_PreInit_EventHandlers
+{
+    class UKSF_Recon
+    {
+        init = "call compile preprocessFileLineNumbers '\UKSF_Recon\XEH_preInit.sqf'";
+    };
+};
+class Extended_PostInit_EventHandlers
+{
+    class UKSF_Recon
+    {
+        init = "call compile preprocessFileLineNumbers '\UKSF_Recon\XEH_postInit.sqf'";
     };
 };
 class CfgWeapons
@@ -296,7 +312,8 @@ class CfgVehicles
                 gunnerName = "Spotter";
                 gunnerCompartments = "Compartment1";
                 forceHideGunner = true;
-                gunnerAction = "Mortar_Gunner";
+                gunnerAction = "UKSF_Recon_Spotter_IK_Test";
+                gunnerRightHandAnimName = "scope_hand_r";
                 minTurn = -90;
                 maxTurn = 90;
                 initTurn = 0;
@@ -308,10 +325,7 @@ class CfgVehicles
                 primaryCommander = 0;
                 commanding = 1;
                 dontCreateAI = true;
-                weapons[] =
-                {
-                    "Laserdesignator_mounted"
-                };
+                weapons[] = {"Laserdesignator_mounted"};
                 gunnerOpticsColor[] = {1,1,1,1};
                 gunnerOpticsModel = "\UKSF_Recon\1240_mildot12.p3d";
                 gunnerOpticsEffect[] = {"OpticsCHAbera1","OpticsBlur2"};
@@ -465,6 +479,388 @@ class CfgVehicles
                     showDisabled = 0;
                 };
             };
+        };
+    };
+};
+class CfgMovesBasic
+{
+    class DefaultDie;
+    class ManActions
+    {
+        UKSF_Recon_Spotter_IK_Test = "UKSF_Recon_Spotter_IK_Test";
+    };
+};
+class CfgMovesMaleSdr: CfgMovesBasic
+{
+    class States
+    {
+        class Mortar_Gunner;
+        class Default;
+        class AadjPercMstpSrasWrflDup;
+        class AmovPercMstpSrasWrflDnon;
+        class AadjPercMstpSrasWrflDdown;
+        class AadjPknlMstpSrasWrflDup;
+        class AmovPknlMstpSrasWrflDnon;
+        class AadjPknlMstpSrasWrflDdown;
+        class AadjPpneMstpSrasWrflDup;
+        class AmovPpneMstpSrasWrflDnon;
+        class AadjPercMstpSrasWrflDup_AmovPercMstpSrasWrflDnon;
+        class AmovPercMstpSrasWrflDnon_AadjPercMstpSrasWrflDdown;
+        class AadjPercMstpSrasWrflDdown_AadjPknlMstpSrasWrflDup;
+        class AadjPknlMstpSrasWrflDup_AmovPknlMstpSrasWrflDnon;
+        class AmovPknlMstpSrasWrflDnon_AadjPknlMstpSrasWrflDdown;
+        class AadjPknlMstpSrasWrflDdown_AadjPpneMstpSrasWrflDup;
+        class AadjPpneMstpSrasWrflDup_AmovPpneMstpSrasWrflDnon;
+        class AmovPpneMstpSrasWrflDnon_AadjPpneMstpSrasWrflDup;
+        class AadjPpneMstpSrasWrflDup_AadjPknlMstpSrasWrflDdown;
+        class AadjPknlMstpSrasWrflDdown_AmovPknlMstpSrasWrflDnon;
+        class AmovPknlMstpSrasWrflDnon_AadjPknlMstpSrasWrflDup;
+        class AadjPknlMstpSrasWrflDup_AadjPercMstpSrasWrflDdown;
+        class AadjPercMstpSrasWrflDdown_AmovPercMstpSrasWrflDnon;
+        class AmovPercMstpSrasWrflDnon_AadjPercMstpSrasWrflDup;
+        class UKSF_Recon_Spotter_StandHigh_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_standhigh.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_StandLow_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_standlow.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_Kneel_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_kneel.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_KneelLow_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_kneellow.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_ProneHigh_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_pronehigh.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_Prone_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_prone.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_StandHigh: AadjPercMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_Stand: AmovPercMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_StandLow: AadjPercMstpSrasWrflDdown
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_KneelHigh: AadjPknlMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_Kneel: AmovPknlMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_KneelLow: AadjPknlMstpSrasWrflDdown
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_ProneHigh: AadjPpneMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_Prone: AmovPpneMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+        };
+        class UKSF_Recon_Spotter_Down_StandHigh_Stand: AadjPercMstpSrasWrflDup_AmovPercMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_Stand",0.01};
+        };
+        class UKSF_Recon_Spotter_Down_Stand_StandLow: AmovPercMstpSrasWrflDnon_AadjPercMstpSrasWrflDdown
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_StandLow",0.01};
+        };
+        class UKSF_Recon_Spotter_Down_StandLow_KneelHigh: AadjPercMstpSrasWrflDdown_AadjPknlMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_KneelHigh",0.01};
+        };
+        class UKSF_Recon_Spotter_Down_KneelHigh_Kneel: AadjPknlMstpSrasWrflDup_AmovPknlMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_Kneel",0.01};
+        };
+        class UKSF_Recon_Spotter_Down_Kneel_KneelLow: AmovPknlMstpSrasWrflDnon_AadjPknlMstpSrasWrflDdown
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_KneelLow",0.01};
+        };
+        class UKSF_Recon_Spotter_Down_KneelLow_ProneHigh: AadjPknlMstpSrasWrflDdown_AadjPpneMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_ProneHigh",0.01};
+        };
+        class UKSF_Recon_Spotter_Down_ProneHigh_Prone: AadjPpneMstpSrasWrflDup_AmovPpneMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_Prone",0.01};
+        };
+        class UKSF_Recon_Spotter_Up_Prone_ProneHigh: AmovPpneMstpSrasWrflDnon_AadjPpneMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_ProneHigh",0.01};
+        };
+        class UKSF_Recon_Spotter_Up_ProneHigh_KneelLow: AadjPpneMstpSrasWrflDup_AadjPknlMstpSrasWrflDdown
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_KneelLow",0.01};
+        };
+        class UKSF_Recon_Spotter_Up_KneelLow_Kneel: AadjPknlMstpSrasWrflDdown_AmovPknlMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_Kneel",0.01};
+        };
+        class UKSF_Recon_Spotter_Up_Kneel_KneelHigh: AmovPknlMstpSrasWrflDnon_AadjPknlMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_KneelHigh",0.01};
+        };
+        class UKSF_Recon_Spotter_Up_KneelHigh_StandLow: AadjPknlMstpSrasWrflDup_AadjPercMstpSrasWrflDdown
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_StandLow",0.01};
+        };
+        class UKSF_Recon_Spotter_Up_StandLow_Stand: AadjPercMstpSrasWrflDdown_AmovPercMstpSrasWrflDnon
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_Stand",0.01};
+        };
+        class UKSF_Recon_Spotter_Up_Stand_StandHigh: AmovPercMstpSrasWrflDnon_AadjPercMstpSrasWrflDup
+        {
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            connectTo[] = {"UKSF_Recon_Spotter_StandHigh",0.01};
+        };
+    };
+    class BlendAnims
+    {
+        UKSF_Recon_SpotterArms[] =
+        {
+            "LeftArm",1,
+            "LeftArmRoll",1,
+            "LeftForeArm",1,
+            "LeftForeArmRoll",1,
+            "LeftHand",1,
+            "LeftHandRing",1,
+            "LeftHandRing1",1,
+            "LeftHandRing2",1,
+            "LeftHandRing3",1,
+            "LeftHandPinky1",1,
+            "LeftHandPinky2",1,
+            "LeftHandPinky3",1,
+            "LeftHandMiddle1",1,
+            "LeftHandMiddle2",1,
+            "LeftHandMiddle3",1,
+            "LeftHandIndex1",1,
+            "LeftHandIndex2",1,
+            "LeftHandIndex3",1,
+            "LeftHandThumb1",1,
+            "LeftHandThumb2",1,
+            "LeftHandThumb3",1,
+            "RightArm",1,
+            "RightArmRoll",1,
+            "RightForeArm",1,
+            "RightForeArmRoll",1,
+            "RightHand",1,
+            "RightHandRing",1,
+            "RightHandRing1",1,
+            "RightHandRing2",1,
+            "RightHandRing3",1,
+            "RightHandPinky1",1,
+            "RightHandPinky2",1,
+            "RightHandPinky3",1,
+            "RightHandMiddle1",1,
+            "RightHandMiddle2",1,
+            "RightHandMiddle3",1,
+            "RightHandIndex1",1,
+            "RightHandIndex2",1,
+            "RightHandIndex3",1,
+            "RightHandThumb1",1,
+            "RightHandThumb2",1,
+            "RightHandThumb3",1
         };
     };
 };
