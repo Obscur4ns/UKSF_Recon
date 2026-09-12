@@ -495,7 +495,6 @@ class CfgMovesMaleSdr: CfgMovesBasic
     class States
     {
         class Mortar_Gunner;
-        class Default;
         class AadjPercMstpSrasWrflDup;
         class AmovPercMstpSrasWrflDnon;
         class AadjPercMstpSrasWrflDdown;
@@ -518,89 +517,14 @@ class CfgMovesMaleSdr: CfgMovesBasic
         class AadjPknlMstpSrasWrflDup_AadjPercMstpSrasWrflDdown;
         class AadjPercMstpSrasWrflDdown_AmovPercMstpSrasWrflDnon;
         class AmovPercMstpSrasWrflDnon_AadjPercMstpSrasWrflDup;
-        class UKSF_Recon_Spotter_StandHigh_Arms: Default
+        class UKSF_Recon_Spotter_IK_Test: Mortar_Gunner
         {
-            file = "\UKSF_Recon\anims\spotter_hold_standhigh.rtm";
-            looped = 1;
-            speed = 0.001;
-            mask = "UKSF_Recon_SpotterArms";
             rightHandIKBeg = 1;
             rightHandIKEnd = 1;
             rightHandIKCurve[] = {1};
             leftHandIKBeg = 0;
             leftHandIKEnd = 0;
             leftHandIKCurve[] = {};
-            weaponIK = 0;
-        };
-        class UKSF_Recon_Spotter_StandLow_Arms: Default
-        {
-            file = "\UKSF_Recon\anims\spotter_hold_standlow.rtm";
-            looped = 1;
-            speed = 0.001;
-            mask = "UKSF_Recon_SpotterArms";
-            rightHandIKBeg = 1;
-            rightHandIKEnd = 1;
-            rightHandIKCurve[] = {1};
-            leftHandIKBeg = 0;
-            leftHandIKEnd = 0;
-            leftHandIKCurve[] = {};
-            weaponIK = 0;
-        };
-        class UKSF_Recon_Spotter_Kneel_Arms: Default
-        {
-            file = "\UKSF_Recon\anims\spotter_hold_kneel.rtm";
-            looped = 1;
-            speed = 0.001;
-            mask = "UKSF_Recon_SpotterArms";
-            rightHandIKBeg = 1;
-            rightHandIKEnd = 1;
-            rightHandIKCurve[] = {1};
-            leftHandIKBeg = 0;
-            leftHandIKEnd = 0;
-            leftHandIKCurve[] = {};
-            weaponIK = 0;
-        };
-        class UKSF_Recon_Spotter_KneelLow_Arms: Default
-        {
-            file = "\UKSF_Recon\anims\spotter_hold_kneellow.rtm";
-            looped = 1;
-            speed = 0.001;
-            mask = "UKSF_Recon_SpotterArms";
-            rightHandIKBeg = 1;
-            rightHandIKEnd = 1;
-            rightHandIKCurve[] = {1};
-            leftHandIKBeg = 0;
-            leftHandIKEnd = 0;
-            leftHandIKCurve[] = {};
-            weaponIK = 0;
-        };
-        class UKSF_Recon_Spotter_ProneHigh_Arms: Default
-        {
-            file = "\UKSF_Recon\anims\spotter_hold_pronehigh.rtm";
-            looped = 1;
-            speed = 0.001;
-            mask = "UKSF_Recon_SpotterArms";
-            rightHandIKBeg = 1;
-            rightHandIKEnd = 1;
-            rightHandIKCurve[] = {1};
-            leftHandIKBeg = 0;
-            leftHandIKEnd = 0;
-            leftHandIKCurve[] = {};
-            weaponIK = 0;
-        };
-        class UKSF_Recon_Spotter_Prone_Arms: Default
-        {
-            file = "\UKSF_Recon\anims\spotter_hold_prone.rtm";
-            looped = 1;
-            speed = 0.001;
-            mask = "UKSF_Recon_SpotterArms";
-            rightHandIKBeg = 1;
-            rightHandIKEnd = 1;
-            rightHandIKCurve[] = {1};
-            leftHandIKBeg = 0;
-            leftHandIKEnd = 0;
-            leftHandIKCurve[] = {};
-            weaponIK = 0;
         };
         class UKSF_Recon_Spotter_StandHigh: AadjPercMstpSrasWrflDup
         {
@@ -813,6 +737,97 @@ class CfgMovesMaleSdr: CfgMovesBasic
             leftHandIKEnd = 0;
             leftHandIKCurve[] = {};
             connectTo[] = {"UKSF_Recon_Spotter_StandHigh",0.01};
+        };
+    };
+};
+class CfgGesturesMale
+{
+    class Default;
+    class States
+    {
+        class UKSF_Recon_Spotter_StandHigh_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_standhigh.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_StandLow_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_standlow.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_Kneel_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_kneel.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_KneelLow_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_kneellow.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_ProneHigh_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_pronehigh.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
+        };
+        class UKSF_Recon_Spotter_Prone_Arms: Default
+        {
+            file = "\UKSF_Recon\anims\spotter_hold_prone.rtm";
+            looped = 1;
+            speed = 0.001;
+            mask = "UKSF_Recon_SpotterArms";
+            rightHandIKBeg = 1;
+            rightHandIKEnd = 1;
+            rightHandIKCurve[] = {1};
+            leftHandIKBeg = 0;
+            leftHandIKEnd = 0;
+            leftHandIKCurve[] = {};
+            weaponIK = 0;
         };
     };
     class BlendAnims
