@@ -8,8 +8,6 @@ class CfgPatches
             "A3_Weapons_F",
             "A3_Anims_F",
             "cba_common",
-            "cba_xeh",
-            "cba_keybinding",
             "ace_main",
             "ace_common",
             "ace_apl",
@@ -43,7 +41,6 @@ class CfgWeapons
         author = "UKSF Surplus";
         model = "\UKSF_Recon\Tripod_Stowed.p3d";
         picture = "\UKSF_Recon\data\UI\proguide_arsenal_ca.paa";
-
         class ItemInfo: CBA_MiscItem_ItemInfo
         {
             mass = 15;
@@ -132,7 +129,6 @@ class CfgVehicles
         destrType = "destructDefault";
         armor = 80;
         class DestructionEffects {};
-
         class Turrets: Turrets
         {
             class MainTurret: MainTurret
@@ -234,179 +230,6 @@ class CfgVehicles
             };
         };
     };
-    class Leupold_ProGuide_Spotting: StaticWeapon
-    {
-        displayName = "[ZXX] Leupold Pro Guide CF-436 Tripod w/ Leupold Mk4 Spotting Scope";
-        author = "UKSF Surplus";
-        scope = 2;
-        side = 1;
-        faction = "BLU_F";
-        model = "\UKSF_Recon\Tripod_Full_Spotting.p3d";
-        radarType = 0;
-        showAllTargets = 0;
-        receiveRemoteTargets = false;
-        reportRemoteTargets = false;
-        reportOwnPosition = false;
-        unitInfoType = "RscUnitInfoStaticNoWeapon";
-        accuracy = 3.5;
-        cost = 4;
-        threat[] = {0,0,0};
-        ace_dragging_canDrag = 1;
-        ace_dragging_canCarry = 1;
-        ace_cookoff_probability = 0;
-        destrType = "destructDefault";
-        armor = 80;
-        class DestructionEffects {};
-        class AnimationSources
-        {
-            class tripod_retract
-            {
-                source = "user";
-                animPeriod = 1;
-                initPhase = 0;
-            };
-            class tripod_splay
-            {
-                source = "user";
-                animPeriod = 1;
-                initPhase = 0;
-            };
-            class tripod_height
-            {
-                source = "user";
-                animPeriod = 1;
-                initPhase = 0;
-            };
-            class gunner_proxy_x
-            {
-                source = "user";
-                animPeriod = 0;
-                initPhase = 0.5;
-            };
-            class gunner_proxy_y
-            {
-                source = "user";
-                animPeriod = 0;
-                initPhase = 0.5;
-            };
-            class gunner_proxy_z
-            {
-                source = "user";
-                animPeriod = 0;
-                initPhase = 0.5;
-            };
-        };
-        class Turrets: Turrets
-        {
-            class MainTurret: MainTurret
-            {
-                body = "mainTurret";
-                gun = "mainGun";
-                turretAxis = "osaveze";
-                gunAxis = "osahlavne";
-                gunBeg = "usti hlavne";
-                gunEnd = "konec hlavne";
-                animationSourceBody = "mainTurret";
-                animationSourceGun = "mainGun";
-                animationSourceElevation = "ObsElevation";
-                memoryPointGunnerOptics = "gunnerview";
-                memoryPointsGetInGunner = "pos gunner";
-                memoryPointsGetInGunnerDir = "pos gunner dir";
-                proxyIndex = 1;
-                gunnerName = "Spotter";
-                gunnerCompartments = "Compartment1";
-                forceHideGunner = true;
-                gunnerAction = "UKSF_Recon_Spotter_IK_Test";
-                gunnerRightHandAnimName = "scope_hand_r";
-                minTurn = -90;
-                maxTurn = 90;
-                initTurn = 0;
-                minElev = -33.117;
-                maxElev = 27.616;
-                initElev = 0;
-                stabilizedInAxes = 0;
-                primaryGunner = 1;
-                primaryCommander = 0;
-                commanding = 1;
-                dontCreateAI = true;
-                weapons[] = {"Laserdesignator_mounted"};
-                gunnerOpticsColor[] = {1,1,1,1};
-                gunnerOpticsModel = "\UKSF_Recon\1240_mildot12.p3d";
-                gunnerOpticsEffect[] = {"OpticsCHAbera1","OpticsBlur2"};
-                turretInfoType = "Mk4_Rangefinder";
-                class Hitpoints {};
-                class OpticsIn
-                {
-                    class Zoom12
-                    {
-                        opticsDisplayName = "12x Zoom";
-                        initAngleX = 0;
-                        minAngleX = -70;
-                        maxAngleX = 70;
-                        initAngleY = 0;
-                        minAngleY = -100;
-                        maxAngleY = 100;
-                        visionMode[] = {};
-                        minFov = "0.25/12";
-                        maxFov = "0.25/12";
-                        initFov = "0.25/12";
-                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot12.p3d";
-                    };
-                    class Zoom20: Zoom12
-                    {
-                        opticsDisplayName = "20x Zoom";
-                        minFov = "0.25/20";
-                        maxFov = "0.25/20";
-                        initFov = "0.25/20";
-                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot20.p3d";
-                    };
-                    class Zoom32: Zoom12
-                    {
-                        opticsDisplayName = "32x Zoom";
-                        minFov = "0.25/32";
-                        maxFov = "0.25/32";
-                        initFov = "0.25/32";
-                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot32.p3d";
-                    };
-                    class Zoom40: Zoom12
-                    {
-                        opticsDisplayName = "40x Zoom";
-                        minFov = "0.25/40";
-                        maxFov = "0.25/40";
-                        initFov = "0.25/40";
-                        gunnerOpticsModel = "\UKSF_Recon\1240_mildot40.p3d";
-                    };
-                };
-            };
-        };
-    class ACE_Actions: ACE_Actions
-    {
-        class ACE_MainActions: ACE_MainActions
-        {
-            selection = "";
-            class spotting_scope_pickup_inv
-            {
-                displayName = "Pickup Spotting Scope";
-                icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
-                selection = "";
-                distance = 5;
-                condition = "(alive _target) && " "(isNull gunner _target) && " "(_player canAdd ['Tripod_Item',2]) && " "(binocular _player != '')";
-                statement = "_player addItem 'Tripod_Item'; " "_player addItem 'Leupold_Spotting_Scope_Handheld'; " "deleteVehicle _target;";
-                showDisabled = 0;
-            };
-            class spotting_scope_pickup_weap
-            {
-                displayName = "Pickup Spotting Scope";
-                icon = "\UKSF_Recon\data\UI\spotting_scope_ace.paa";
-                selection = "";
-                distance = 5;
-                condition = "(alive _target) && " "(isNull gunner _target) && " "(_player canAdd ['Tripod_Item',2]) && " "(binocular _player == '')";
-                statement = "_player addItem 'Tripod_Item'; " "_player addItem 'Leupold_Spotting_Scope_Handheld'; " "deleteVehicle _target;";
-                showDisabled = 0;
-            };
-        };
-    };
-};
     class Man;
     class CAManBase: Man
     {
